@@ -1,3 +1,5 @@
+//go:build !wasm
+
 /*
  * Cadence - The resource-oriented smart contract programming language
  *
