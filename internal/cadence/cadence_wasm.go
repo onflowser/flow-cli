@@ -1,4 +1,4 @@
-//go:build !wasm
+//go:build wasm
 
 /*
  * Flow CLI
@@ -21,30 +21,14 @@
 package cadence
 
 import (
-	"github.com/onflow/cadence/runtime/cmd/execute"
 	"github.com/spf13/cobra"
-
-	"github.com/onflow/flow-cli/internal/cadence/languageserver"
 )
 
 var Cmd = &cobra.Command{
 	Use:     "cadence",
-	Short:   "Execute Cadence code",
+	Short:   "Execute Cadence code (not implemented)",
 	GroupID: "tools",
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) > 0 {
-			execute.Execute(args, nil)
-		} else {
-			repl, err := execute.NewConsoleREPL()
-			if err != nil {
-				panic(err)
-			}
-			repl.Run()
-		}
+		log.Fatal("Not supported in WASM mode")
 	},
-}
-
-func init() {
-	Cmd.AddCommand(languageserver.Cmd)
-	lintCommand.AddToParent(Cmd)
 }
